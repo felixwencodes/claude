@@ -1,4 +1,4 @@
-# felixhumanizerpro
+# FelixHumanizerPro
 
 Felix's personal writing editor. It's a portable agent skill that strips the signs of AI-generated writing out of text so it reads like a person wrote it. On top of the Wikipedia "Signs of AI writing" guide it layers Felix's own hard rules, including a zero-tolerance ban on em and en dashes and platform-specific register. It's plain Markdown, so it runs in any harness that supports skill-style instructions.
 
