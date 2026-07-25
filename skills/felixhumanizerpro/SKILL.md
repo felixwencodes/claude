@@ -16,7 +16,7 @@ Description: |
   parallelisms, filler phrases, and chatbot artifacts.
 License: MIT
 Metadata:
-  version: "3.0.0"
+  version: "1.0.0"
 ---
 
 # Felix Humanizer Pro: Remove AI Writing Patterns
