@@ -176,15 +176,7 @@ These aren't in the base guide. I put them in because they're the tells I person
 
 ## The one rule that never bends: no dashes
 
-Every other rule can flex to match your voice. This one can't. The final text carries zero em dashes and zero en dashes, including the spaced kind and the double-hyphen stand-in. To most readers a stray em dash is the single loudest AI tell, and I just don't want them in anything with my name on it. Each one gets swapped for a period, a comma, a colon, or parentheses, whichever fits:
-
-| Before | After |
-|--------|-------|
-| "It's promoted by institutions—not the people—and it sticks." | "It's promoted by institutions, not the people, and it sticks." |
-| "The change -- overdue by any measure -- ships today." | "The change, overdue by any measure, ships today." |
-| "One node runs the whole thing — wild." | "One node runs the whole thing. Wild." |
-
-Real hyphens inside compound words (self-hosted, human-in-the-loop) are safe. This is only about dashes doing a comma or period's job. Before it hands anything back, the skill scans for all four dash shapes and treats any hit as an unfinished draft.
+Every other rule can flex to match your voice. This one can't. The final text carries zero em dashes, zero en dashes, and none of the spaced or double-hyphen stand-ins people reach for in their place. To most readers a stray long dash is the single loudest AI tell, and I don't want one in anything with my name on it. Wherever a draft uses a dash to punctuate, the skill swaps it for a period, a comma, a colon, or parentheses, whichever fits. An aside that a model would bracket with dashes gets commas instead: "It's promoted by institutions, not the people, and it sticks." A dash used to bolt a punchline onto a sentence becomes a full stop: "One node runs the whole thing. Wild." Real hyphens inside compound words (self-hosted, human-in-the-loop) are safe, since this rule is only about dashes doing a comma or period's job. Before it hands anything back, the skill scans for all four of those dash shapes and treats any hit as an unfinished draft.
 
 ## A full pass
 
@@ -192,15 +184,15 @@ Real hyphens inside compound words (self-hosted, human-in-the-loop) are safe. Th
 
 **Before (AI-sounding):**
 
-> I recently invested in a robot vacuum, and let me tell you — this little machine has completely transformed my home. From the very first run, I knew my cleaning routine would never be the same.
+> I recently invested in a robot vacuum, and let me tell you, this little machine has completely transformed my home. From the very first run, I knew my cleaning routine would never be the same.
 >
-> Nestled quietly in the corner of my living room, this smart device stands as a testament to how far home automation has come, seamlessly blending cutting-edge technology with everyday convenience. Yes, the initial setup was a touch tricky — the app took some getting used to! — but every scheduled clean rewards you with spotless floors that make it all worthwhile.
+> Nestled quietly in the corner of my living room, this smart device stands as a testament to how far home automation has come, seamlessly blending cutting-edge technology with everyday convenience. Yes, the initial setup was a touch tricky (the app took some getting used to!) but every scheduled clean rewards you with spotless floors that make it all worthwhile.
 >
 > No modern home would be complete without embracing smart cleaning. And the results? Simply flawless. Watching it glide effortlessly across the room, navigating around furniture with ease, was a moment of pure satisfaction I won't soon forget.
 >
-> But what truly sets it apart isn't just the convenience — it's the peace of mind. Whether you're at the office or relaxing on the couch, you can trust it to keep your space pristine, giving you back precious time for the things that matter most.
+> But what truly sets it apart isn't just the convenience, it's the peace of mind. Whether you're at the office or relaxing on the couch, you can trust it to keep your space pristine, giving you back precious time for the things that matter most.
 >
-> Would I recommend it? Absolutely. This isn't just a gadget — it's an investment in a cleaner, smarter, more effortless lifestyle. If you're dreaming of reclaiming your weekends, this is one purchase that promises to change your home forever. ✨
+> Would I recommend it? Absolutely. This isn't just a gadget, it's an investment in a cleaner, smarter, more effortless lifestyle. If you're dreaming of reclaiming your weekends, this is one purchase that promises to change your home forever. ✨
 
 **After (humanized):**
 
@@ -213,6 +205,14 @@ Real hyphens inside compound words (self-hosted, human-in-the-loop) are safe. Th
 > Where it loses me is the edge cases. It swallows phone cables if I leave them on the floor. It wedged itself under the couch once and just sat there announcing "error 4" to an empty apartment until I got home. And it has its own upkeep, emptying the bin, pulling hair off the roller, rinsing the filter, so "set it and forget it" is a stretch.
 >
 > I still run it almost daily. Would I buy it again? Probably, but going in I'd know it's a tool that buys me time, not a robot butler. It doesn't replace cleaning so much as change what the word means.
+
+## A quick detector check
+
+I ran a fresh paragraph written to these rules through QuillBot's AI detector. It came back 100% human-written, 0% AI.
+
+![QuillBot AI detector showing 0% AI generated and 100% human-written](screenshots/Screenshot%202026-07-25%20173438.png)
+
+One detector on one sample isn't proof of anything. Detectors disagree with each other and none of them are reliable, so a clean score here is a sanity check, not a guarantee. The goal was never to beat a detector anyway. It's that a person reading the text stops noticing the machine.
 
 ## How the rewrite actually works
 
