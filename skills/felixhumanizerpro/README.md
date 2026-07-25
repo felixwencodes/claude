@@ -242,7 +242,7 @@ The hard rules layered on top, the dash ban, the platform register, the bias tow
 
 ## Version
 
-3.0.0. Full Wikipedia-based pattern set, my own hard rules on top, the no-fabrication guard, and the two-pass audit-then-rewrite loop.
+1.0.0. Full Wikipedia-based pattern set, my own hard rules on top, the no-fabrication guard, and the two-pass audit-then-rewrite loop.
 
 ## License
 
