@@ -2,6 +2,14 @@
 
 My personal writing editor, packaged as an agent skill. It reads a piece of text, finds the habits that give away a language model, and rewrites them out so the result reads like a person actually typed it. The pattern list underneath is built on Wikipedia's "Signs of AI writing" guide, but I've bolted my own non-negotiables on top: no em or en dashes anywhere, tone that matches where the text is going, and a preference for a rougher draft over a shiny one. It's a single Markdown file, so it drops into any tool that understands skill instructions.
 
+## A quick detector check
+
+I ran a fresh paragraph written to these rules through QuillBot's AI detector. It came back 100% human-written, 0% AI.
+
+![QuillBot AI detector showing 0% AI generated and 100% human-written](screenshots/Screenshot%202026-07-25%20173438.png)
+
+One detector on one sample isn't proof of anything. Detectors disagree with each other and none of them are reliable, so a clean score here is a sanity check, not a guarantee. The goal was never to beat a detector anyway. It's that a person reading the text stops noticing the machine.
+
 ## Why I bothered
 
 Most "humanizer" tools stop at deleting a few buzzwords and call it done. That is not enough. A rewrite can be free of "delve" and still smell like a bot because the rhythm is too even, every sentence lands like a quote, and there's a tidy summary at the end that no real person would write. So this skill does two things the plain approach skips. It runs a second pass that asks "what still reads as AI here" and fixes what the first draft missed, and it holds a few hard rules that never bend, the dash ban being the strictest. The point is not to pass a detector (nothing reliably does that). The point is that a human reader stops noticing the machine.
@@ -205,14 +213,6 @@ Every other rule can flex to match your voice. This one can't. The final text ca
 > Where it loses me is the edge cases. It swallows phone cables if I leave them on the floor. It wedged itself under the couch once and just sat there announcing "error 4" to an empty apartment until I got home. And it has its own upkeep, emptying the bin, pulling hair off the roller, rinsing the filter, so "set it and forget it" is a stretch.
 >
 > I still run it almost daily. Would I buy it again? Probably, but going in I'd know it's a tool that buys me time, not a robot butler. It doesn't replace cleaning so much as change what the word means.
-
-## A quick detector check
-
-I ran a fresh paragraph written to these rules through QuillBot's AI detector. It came back 100% human-written, 0% AI.
-
-![QuillBot AI detector showing 0% AI generated and 100% human-written](screenshots/Screenshot%202026-07-25%20173438.png)
-
-One detector on one sample isn't proof of anything. Detectors disagree with each other and none of them are reliable, so a clean score here is a sanity check, not a guarantee. The goal was never to beat a detector anyway. It's that a person reading the text stops noticing the machine.
 
 ## How the rewrite actually works
 
