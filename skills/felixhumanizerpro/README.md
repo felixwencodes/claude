@@ -76,6 +76,7 @@ Call it the way your harness exposes skills, either a slash command or a plain r
 
 ```
 /felixhumanizerpro
+
 [your text]
 ```
 
@@ -95,6 +96,7 @@ Hand it a sample of your own writing and it copies your habits instead of produc
 
 ```
 /felixhumanizerpro
+
 Here are a couple paragraphs I wrote, match this voice:
 [2-3 of your own paragraphs]
 
@@ -186,35 +188,31 @@ Real hyphens inside compound words (self-hosted, human-in-the-loop) are safe. Th
 
 ## A full pass
 
-*(The rewrite adds a few specifics, the month, the neighborhoods, that a real author would supply. In an actual session the skill asks for those rather than inventing them.)*
+*(The rewrite keeps every claim from the before and just strips the tells. The invented specifics here, the month and the error code, stand in for details a real author would supply. In an actual session the skill asks for those rather than inventing them.)*
 
 **Before (AI-sounding):**
 
-> I recently spent five unforgettable days in Lisbon, and let me tell you — this city completely stole my heart. From the moment I arrived, I knew I was somewhere truly special.
+> I recently invested in a robot vacuum, and let me tell you — this little machine has completely transformed my home. From the very first run, I knew my cleaning routine would never be the same.
 >
-> Nestled along the banks of the Tagus River, Lisbon stands as a vibrant testament to Portugal's enduring spirit, where rich history and modern energy intertwine at every turn. Yes, the famous hills are challenging — my legs certainly felt it! — but every climb rewards you with breathtaking, panoramic views that make it all worthwhile.
+> Nestled quietly in the corner of my living room, this smart device stands as a testament to how far home automation has come, seamlessly blending cutting-edge technology with everyday convenience. Yes, the initial setup was a touch tricky — the app took some getting used to! — but every scheduled clean rewards you with spotless floors that make it all worthwhile.
 >
-> No trip would be complete without riding the iconic Tram 28, winding through the city's most historic neighborhoods. And the food? Simply divine. The original pastéis de nata at Pastéis de Belém are a beloved national treasure, and savoring one still warm was a moment I will never forget.
+> No modern home would be complete without embracing smart cleaning. And the results? Simply flawless. Watching it glide effortlessly across the room, navigating around furniture with ease, was a moment of pure satisfaction I won't soon forget.
 >
-> But what truly makes Lisbon special isn't just the sights — it's the feeling. Wander a few steps off the main squares and you'll discover a quieter, more authentic side: sun-drenched alleys, charming tiled facades, and friendly locals going about their daily lives, inviting you to slow down and savor every moment.
+> But what truly sets it apart isn't just the convenience — it's the peace of mind. Whether you're at the office or relaxing on the couch, you can trust it to keep your space pristine, giving you back precious time for the things that matter most.
 >
-> Of course, the must-see São Jorge Castle offers stunning views over the rooftops below. The queues can be long, but the experience is absolutely worth it for any history buff or curious traveler.
->
-> Would I go back? Absolutely. Lisbon isn't just a place to visit — it's a place to fall in love with, again and again. If you're dreaming of your next getaway, this is one destination that promises memories to last a lifetime. ✨
+> Would I recommend it? Absolutely. This isn't just a gadget — it's an investment in a cleaner, smarter, more effortless lifestyle. If you're dreaming of reclaiming your weekends, this is one purchase that promises to change your home forever. ✨
 
 **After (humanized):**
 
-> I spent five days in Lisbon last October and still have mixed feelings about it. Beautiful, yes. Also harder on the knees than anyone warned me.
+> I bought a robot vacuum in March and my honest verdict is that it's great about eighty percent of the time and mildly infuriating the rest.
 >
-> The hills are the whole story and somehow never make the brochures. My hotel was up in Alfama, which photographs beautifully and translates, in practice, to climbing what felt like a six-story staircase every time I wanted coffee. By the second day my calves had opinions. I started planning each walk around which way was downhill, which is a strange way to see a city but probably an honest one.
+> The good part is real. It runs while I'm at work and the floors are cleaner than when the job depended on me remembering to do it every couple of weeks, which was the actual baseline. Dog hair especially. It gets the stuff along the baseboards I always skipped.
 >
-> Everyone says to ride Tram 28, so I did, wedged against a stranger's backpack for forty minutes while three tour groups filmed the same corner. I would walk the route next time, or go before breakfast. The custard tarts, though, earn the fuss. I had one at a plain little place in Graça, still warm, and for about thirty seconds I understood why people build trips around pastry.
+> Setup was more of a hassle than the box lets on. The app made me create an account and update the firmware before it would move an inch, and then it spent its first run bumping the same chair leg like it had a grudge. It mapped the place on the second try and has mostly behaved since.
 >
-> What I did not expect was how quiet the city gets away from the main squares. Two blocks uphill from any plaza it turns into laundry lines, chipped tile, open windows, and old men watching football with the sound turned up. That is the Lisbon I keep thinking about, not the castle.
+> Where it loses me is the edge cases. It swallows phone cables if I leave them on the floor. It wedged itself under the couch once and just sat there announcing "error 4" to an empty apartment until I got home. And it has its own upkeep, emptying the bin, pulling hair off the roller, rinsing the filter, so "set it and forget it" is a stretch.
 >
-> The castle is fine. The view is great, the queue is long, and I spent more time shuffling toward the entrance than looking at anything once I got inside. If I had only two days, I would trade it for an afternoon of getting lost.
->
-> I would go back, but in spring and with better shoes. Lisbon does not bend over backward to make things easy for you. I think I liked that, even when my legs disagreed.
+> I still run it almost daily. Would I buy it again? Probably, but going in I'd know it's a tool that buys me time, not a robot butler. It doesn't replace cleaning so much as change what the word means.
 
 ## How the rewrite actually works
 
