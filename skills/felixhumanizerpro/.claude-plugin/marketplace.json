@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
-  "name": "felixehumanizerpro",
+  "name": "felixhumanizerpro",
   "owner": {
     "name": "felixwen",
     "url": "https://github.com/felixwen"
@@ -8,7 +8,7 @@
   "description": "The humanizer skill, installable as a Claude Code plugin.",
   "plugins": [
     {
-      "name": "felixehumanizerpro",
+      "name": "felixhumanizerpro",
       "source": "./",
       "description": "Remove signs of AI-generated writing from text, making it sound more natural and human. Based on Wikipedia's \"Signs of AI writing\" guide.",
       "license": "MIT",

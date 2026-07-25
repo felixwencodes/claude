@@ -1,5 +1,5 @@
 ---
-name: felixehumanizerpro
+name: felixhumanizerpro
 description: |
   Felix's personal writing editor. Removes signs of AI-generated writing from
   anything felix will post, send, or publish as his own: Reddit posts and

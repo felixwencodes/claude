@@ -1,4 +1,5 @@
-# felixhumanizerpro
+# felixehumanizerpro
+
 
 Felix's personal writing editor: a portable agent skill that strips the signs of AI-generated writing out of text so it reads like a person wrote it. It layers Felix's own hard rules on top of the Wikipedia "Signs of AI writing" guide, including a zero-tolerance ban on em/en dashes and platform-specific register. It is plain Markdown, so it runs in any harness that supports skill-style instructions.
 
@@ -15,7 +16,7 @@ npx skills add felixwen/humanizer --global
 Update an existing install:
 
 ```bash
-npx skills update felixhumanizerpro --global
+npx skills update felixehumanizerpro --global
 ```
 
 To install globally into every supported agent harness:
@@ -38,10 +39,10 @@ Claude Code users can install it as a plugin:
 
 ```
 /plugin marketplace add felixwen/humanizer
-/plugin install felixhumanizerpro@felixhumanizerpro
+/plugin install felixehumanizerpro@felixehumanizerpro
 ```
 
-The skill is then invoked as `/felixhumanizerpro:felixhumanizerpro`.
+The skill is then invoked as `/felixehumanizerpro:felixehumanizerpro`.
 
 ### Claude apps (claude.ai and Claude Desktop)
 
@@ -60,14 +61,14 @@ Any agent harness can use the skill directly because the runtime artifact is `SK
 For example:
 
 ```bash
-git clone https://github.com/felixwen/humanizer.git /path/to/your/skills/felixhumanizerpro
+git clone https://github.com/felixwen/humanizer.git /path/to/your/skills/felixehumanizerpro
 ```
 
 Or, if you already have this repo cloned:
 
 ```bash
-mkdir -p /path/to/your/skills/felixhumanizerpro
-cp SKILL.md /path/to/your/skills/felixhumanizerpro/
+mkdir -p /path/to/your/skills/felixehumanizerpro
+cp SKILL.md /path/to/your/skills/felixehumanizerpro/
 ```
 
 ## Usage
@@ -75,7 +76,7 @@ cp SKILL.md /path/to/your/skills/felixhumanizerpro/
 Invoke the skill however your agent harness exposes installed skills. Common forms include a slash command or a direct request:
 
 ```
-/felixhumanizerpro
+/felixehumanizerpro
 
 [paste your text here]
 ```
@@ -95,7 +96,7 @@ Humanize the prose in docs/launch-post.md
 To match your personal writing style, provide a sample of your own writing:
 
 ```
-/felixhumanizerpro
+/felixehumanizerpro
 
 Here's a sample of my writing for voice matching:
 [paste 2-3 paragraphs of your own writing]
