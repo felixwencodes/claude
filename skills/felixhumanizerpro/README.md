@@ -1,183 +1,192 @@
-# FelixHumanizerPro
+# felixhumanizerpro
 
-Felix's personal writing editor. It's a portable agent skill that strips the signs of AI-generated writing out of text so it reads like a person wrote it. On top of the Wikipedia "Signs of AI writing" guide it layers Felix's own hard rules, including a zero-tolerance ban on em and en dashes and platform-specific register. It's plain Markdown, so it runs in any harness that supports skill-style instructions.
+My personal writing editor, packaged as an agent skill. It reads a piece of text, finds the habits that give away a language model, and rewrites them out so the result reads like a person actually typed it. The pattern list underneath is built on Wikipedia's "Signs of AI writing" guide, but I've bolted my own non-negotiables on top: no em or en dashes anywhere, tone that matches where the text is going, and a preference for a rougher draft over a shiny one. It's a single Markdown file, so it drops into any tool that understands skill instructions.
 
-## Installation
+## Why I bothered
 
-### Skills CLI
+Most "humanizer" tools stop at deleting a few buzzwords and call it done. That is not enough. A rewrite can be free of "delve" and still smell like a bot because the rhythm is too even, every sentence lands like a quote, and there's a tidy summary at the end that no real person would write. So this skill does two things the plain approach skips. It runs a second pass that asks "what still reads as AI here" and fixes what the first draft missed, and it holds a few hard rules that never bend, the dash ban being the strictest. The point is not to pass a detector (nothing reliably does that). The point is that a human reader stops noticing the machine.
 
-Install globally with the cross-agent skills CLI so the skill is available in every project:
+## Install
+
+### Through the skills CLI
+
+Global install, available in every project:
 
 ```bash
 npx skills add felixwen/humanizer --global
 ```
 
-Update an existing install:
+Update it later:
 
 ```bash
 npx skills update felixhumanizerpro --global
 ```
 
-To install globally into every supported agent harness:
+Push it into every agent harness you have configured:
 
 ```bash
 npx skills add felixwen/humanizer --global --agent '*'
 ```
 
-To target one configured harness, pass its agent name:
+Or one specific harness:
 
 ```bash
 npx skills add felixwen/humanizer --global --agent <agent-name>
 ```
 
-Omit `--global` for a project-local install that can be committed and shared with collaborators. Start a new agent session or reload skills after installation.
+Drop `--global` if you'd rather keep it local to one project and commit it alongside your code. Reload skills or start a fresh session afterward.
 
-### Claude Code plugin
-
-Claude Code users can install it as a plugin:
+### As a Claude Code plugin
 
 ```
 /plugin marketplace add felixwen/humanizer
 /plugin install felixhumanizerpro@felixhumanizerpro
 ```
 
-The skill is then invoked as `/felixhumanizerpro:felixhumanizerpro`.
+After that it answers to `/felixhumanizerpro:felixhumanizerpro`.
 
-### Claude apps (claude.ai and Claude Desktop)
+### Inside the Claude apps
 
-To use it inside Claude itself rather than a CLI, add it as a Skill:
+To run it in claude.ai or Claude Desktop instead of a CLI:
 
-1. Package the skill as a `.skill` file (a zip of this folder that contains `SKILL.md`), or have `SKILL.md` ready on its own.
-2. In Claude, open **Settings → Capabilities → Skills** (Team and Enterprise workspaces may manage this under **Admin settings**), then choose **Add / Upload skill** and select the file.
-3. Start a new chat. Ask Claude to humanize text, or trigger it by name, and Claude loads the skill automatically.
+1. Zip the skill folder (the archive needs `SKILL.md` at its root) and rename it with a `.skill` extension, or just have `SKILL.md` ready on its own.
+2. Open **Settings → Capabilities → Skills** (Team and Enterprise plans may keep this under **Admin settings**), pick **Add / Upload skill**, and select the file.
+3. Open a new chat and ask it to humanize something, or call it by name. Claude loads it on its own.
 
-Note: skill availability depends on your Claude plan and, on Team and Enterprise, on whether your workspace admin has enabled skills. The exact menu labels change over time, so if the path above does not match, look for "Skills" or "Capabilities" in your current Claude settings.
+Whether this option shows up depends on your plan, and on Team or Enterprise, on whether an admin has turned skills on. Menu names drift over time, so if the path above is off, hunt for "Skills" or "Capabilities" in settings.
 
-### Manual
+### By hand
 
-Any agent harness can use the skill directly because the runtime artifact is `SKILL.md`. Install it wherever your harness expects skill directories, or copy `SKILL.md` into an existing skill folder.
-
-For example:
+The only thing that matters at runtime is `SKILL.md`, so any harness can use it directly. Clone it where your tool keeps skills:
 
 ```bash
 git clone https://github.com/felixwen/humanizer.git /path/to/your/skills/felixhumanizerpro
 ```
 
-Or, if you already have this repo cloned:
+Or copy the one file into an existing skill folder:
 
 ```bash
 mkdir -p /path/to/your/skills/felixhumanizerpro
 cp SKILL.md /path/to/your/skills/felixhumanizerpro/
 ```
 
-## Usage
+## Running it
 
-Invoke the skill however your agent harness exposes installed skills. Common forms are a slash command or a direct request:
-
-```
-/felixhumanizerpro
-[paste your text here]
-```
-
-```
-Please humanize this text: [your text]
-```
-
-Point it at a file and the skill rewrites it in place:
-
-```
-Humanize the prose in docs/launch-post.md
-```
-
-### Voice calibration
-
-To match your personal writing style, give it a sample of your own writing:
+Call it the way your harness exposes skills, either a slash command or a plain request:
 
 ```
 /felixhumanizerpro
-Here's a sample of my writing for voice matching:
-[paste 2-3 paragraphs of your own writing]
-Now humanize this text:
-[paste AI text to humanize]
+[your text]
 ```
 
-The skill reads your sentence rhythm, word choices, and quirks, then applies them to the rewrite instead of producing generic "clean" output.
+```
+Please humanize this: [your text]
+```
 
-## Overview
+Point it at a file and it edits the prose in place, leaving code, frontmatter, and links alone:
 
-Based on [Wikipedia's "Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) guide, maintained by WikiProject AI Cleanup. That guide comes from observations of thousands of instances of AI-generated text.
+```
+Humanize the writing in docs/launch-post.md
+```
 
-On top of it, this skill adds Felix's own hard rules: zero em and en dashes with no exceptions, platform-specific register (a Reddit comment should not read like a press release), and a bias toward rougher, more human-sounding drafts over polished ones. It also runs a final "obviously AI generated" audit pass and a second rewrite to catch anything the first draft misses.
+### Teaching it your voice
 
-Rewrites follow a no-fabrication rule: they never add facts, names, dates, or citations that aren't in the source text. Specificity has to come from the source or the author, not from the rewrite.
+Hand it a sample of your own writing and it copies your habits instead of producing generic clean prose:
 
-### Key insight from Wikipedia
+```
+/felixhumanizerpro
+Here are a couple paragraphs I wrote, match this voice:
+[2-3 of your own paragraphs]
 
-> "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
+Now rewrite this:
+[the AI text]
+```
 
-## Patterns detected (with before/after examples)
+It reads your sentence lengths, your word picks, and your quirks, then writes toward those. The one thing a sample can't override is the dash rule; that stays off no matter what your sample does.
 
-### Content patterns
+## What it hunts for
 
-| # | Pattern | Before | After |
-|---|---------|--------|-------|
-| 1 | **Significance inflation** | "marking a pivotal moment in the evolution of..." | "was established in 1989 as part of a wider decentralization" |
-| 2 | **Notability name-dropping** | "cited in NYT, BBC, FT, and The Hindu" | Trim the list; keep only sourced context |
-| 3 | **Superficial -ing analyses** | "symbolizing... reflecting... showcasing..." | Remove, or keep only what the source supports |
-| 4 | **Promotional language** | "nestled within the breathtaking region" | "is a town in the Gonder region" |
-| 5 | **Vague attributions** | "Experts believe it plays a crucial role" | Name a real source or cut the claim |
-| 6 | **Formulaic challenges** | "Despite challenges... continues to thrive" | Keep the sourced facts; cut the boosterism |
+The catalog splits into five buckets. Every row is a habit the skill flags and the direction it rewrites toward. The "before" snippets are made up to show the shape of the problem, not lifted from anything real.
 
-### Language patterns
+### Padding the meaning
 
-| # | Pattern | Before | After |
-|---|---------|--------|-------|
-| 7 | **AI vocabulary** | "Actually... additionally... testament... landscape... showcasing" | "also... remain common" |
-| 8 | **Copula avoidance** | "serves as... features... boasts" | "is... has" |
-| 9 | **Negative parallelisms / tailing negations** | "It's not just X, it's Y", "..., no guessing" | State the point directly |
-| 10 | **Rule of three** | "innovation, inspiration, and insights" | Use natural number of items |
-| 11 | **Synonym cycling** | "protagonist... main character... central figure... hero" | "protagonist" (repeat when clearest) |
-| 12 | **False ranges** | "from the Big Bang to dark matter" | List topics directly |
-| 13 | **Passive voice / subjectless fragments** | "No configuration file needed" | Name the actor when it helps clarity |
+| Habit | Looks like | Becomes |
+|-------|-----------|---------|
+| Inflated importance | "This update marks a defining moment in the product's journey." | "This update adds dark mode." |
+| Notability stuffing | "Recognized across the industry with a strong and growing following." | Name the one real mention, or drop it. |
+| Fake-depth -ing tails | "The endpoint returns JSON, empowering teams and driving adoption." | "The endpoint returns JSON." |
+| Brochure voice | "a vibrant space nestled in the heart of the district" | "an office downtown" |
+| Borrowed authority | "Many experts agree this is the right call." | Say who, or own the claim yourself. |
+| Challenges-then-hope arc | "Despite the hurdles, the team continues to thrive." | Keep the actual problem, cut the pep talk. |
 
-### Style patterns
+### Word and sentence habits
 
-| # | Pattern | Before | After |
-|---|---------|--------|-------|
-| 14 | **Em/en dashes (hard cut, zero tolerance)** | "institutions—not the people—yet this continues—" | Cut them: periods, commas, colons, or parentheses |
-| 15 | **Boldface overuse** | "**OKRs**, **KPIs**, **BMC**" | "OKRs, KPIs, BMC" |
-| 16 | **Inline-header lists** | "**Performance:** Performance improved" | Convert to prose |
-| 17 | **Title Case Headings** | "Strategic Negotiations And Partnerships" | "Strategic negotiations and partnerships" |
-| 18 | **Emojis** | "🚀 Launch Phase: 💡 Key Insight:" | Remove emojis |
-| 19 | **Curly quotes** | `said “the project”` | `said "the project"` |
-| 26 | **Hyphenated word pairs** | “cross-functional, data-driven, client-facing” | Drop hyphens on common word pairs |
-| 27 | **Persuasive authority tropes** | "At its core, what matters is..." | State the point directly |
-| 28 | **Signposting announcements** | "Let's dive in", "Here's what you need to know" | Start with the content |
-| 29 | **Fragmented headers** | "## Performance" + "Speed matters." | Let the heading do the work |
-| 30 | **Diff-anchored writing** | "This function was added to replace..." | Describe what it does, not what changed |
-| 31 | **Manufactured punchlines / staccato drama** | "It had no preference. No prior. No nostalgia." | Use varied sentence lengths and concrete claims |
-| 32 | **Aphorism formulas** | "Symmetry is the language of trust" | Replace the formula with the actual claim |
-| 33 | **Conversational rhetorical openers** | "Honestly? It depends..." | Remove the fake-candid setup |
+| Habit | Looks like | Becomes |
+|-------|-----------|---------|
+| Model vocabulary | "We leveraged a robust setup to delve into the landscape." | "We used the setup to study the data." |
+| Dodging "is" | "The tool serves as a bridge between the two teams." | "The tool connects the two teams." |
+| Fake contrast | "This isn't just a script, it's a system." | "This script schedules the backups." |
+| Forced groups of three | "faster, cleaner, and smarter" | "faster and easier to read" |
+| Synonym shuffling | "the script... the utility... the helper... the tool" | Pick one word and repeat it. |
+| Meaningless range | "everything from setup to scaling" | "setup and scaling" |
+| Missing subject | "No install needed." | "You don't have to install anything." |
 
-### Communication patterns
+### Formatting tics
 
-| # | Pattern | Before | After |
-|---|---------|--------|-------|
-| 20 | **Chatbot artifacts** | "I hope this helps! Let me know if..." | Remove entirely |
-| 21 | **Cutoff disclaimers** | "While details are limited in available sources..." | Find sources or remove |
-| 22 | **Sycophantic tone** | "Great question! You're absolutely right!" | Respond directly |
+| Habit | Looks like | Becomes |
+|-------|-----------|---------|
+| Bold sprinkled around | "It uses **OKRs**, **KPIs**, and a **scorecard**." | "It uses OKRs, KPIs, and a scorecard." |
+| Bold-label bullet lists | "**Speed:** it got faster." | Written as a sentence. |
+| Title Case Headings | "## Getting Started With The Tool" | "## Getting started with the tool" |
+| Decorative emoji | "🚀 Launch, 💡 Insight, ✅ Done" | The words, no icons. |
+| Curly quotes | `“the project”` (from a chatbot paste) | `"the project"` |
+| Hyphen everything | "the report is high-quality and data-driven" | "the report is high quality and data driven" |
+
+### Chatbot residue
+
+| Habit | Looks like | Becomes |
+|-------|-----------|---------|
+| Assistant chatter | "Here's a summary! Hope this helps, let me know." | Gone. Start at the content. |
+| Cutoff hedging | "As of my last update, details are limited." | State what's known, or cut it. |
+| Flattery | "Great question! You're absolutely right." | Skip it and answer. |
 
 ### Filler and hedging
 
-| # | Pattern | Before | After |
-|---|---------|--------|-------|
-| 23 | **Filler phrases** | "In order to", "Due to the fact that" | "To", "Because" |
-| 24 | **Excessive hedging** | "could potentially possibly" | "may" |
-| 25 | **Generic conclusions** | "The future looks bright" | Specific plans or facts |
+| Habit | Looks like | Becomes |
+|-------|-----------|---------|
+| Wordy phrases | "in order to", "due to the fact that" | "to", "because" |
+| Stacked hedges | "could potentially possibly help" | "may help" |
+| Upbeat wrap-ups | "The future is bright." | The last real fact, then stop. |
 
-## Full example
+### The ones I added
 
-*(Illustration note: the rewrite below adds specifics, like the month and the neighborhoods, that stand in for details the author would supply. In a real session those come from the user; the skill asks rather than invents.)*
+These aren't in the base guide. I put them in because they're the tells I personally trip over most.
+
+| Habit | Looks like | Becomes |
+|-------|-----------|---------|
+| Fake-profound framing | "At its core, what really matters is speed." | "Speed is the main thing here." |
+| Announcing the obvious | "Let's dive in. Here's what you need to know." | Just say the thing. |
+| Empty line under a header | "## Performance" then "Speed matters." | Let the header stand and get to the point. |
+| Narrating the diff | "This function was added to replace the old loop." | Describe what it does now. |
+| Manufactured drama | "No prior. No bias. No nostalgia." | One clear sentence instead of a stack of fragments. |
+| Aphorism mode | "Symmetry is the language of trust." | The plain claim it's dressing up. |
+| Fake-candid opener | "Honestly? It depends." | "It depends on how often you use it." |
+
+## The one rule that never bends: no dashes
+
+Every other rule can flex to match your voice. This one can't. The final text carries zero em dashes and zero en dashes, including the spaced kind and the double-hyphen stand-in. To most readers a stray em dash is the single loudest AI tell, and I just don't want them in anything with my name on it. Each one gets swapped for a period, a comma, a colon, or parentheses, whichever fits:
+
+| Before | After |
+|--------|-------|
+| "It's promoted by institutions—not the people—and it sticks." | "It's promoted by institutions, not the people, and it sticks." |
+| "The change -- overdue by any measure -- ships today." | "The change, overdue by any measure, ships today." |
+| "One node runs the whole thing — wild." | "One node runs the whole thing. Wild." |
+
+Real hyphens inside compound words (self-hosted, human-in-the-loop) are safe. This is only about dashes doing a comma or period's job. Before it hands anything back, the skill scans for all four dash shapes and treats any hit as an unfinished draft.
+
+## A full pass
+
+*(The rewrite adds a few specifics, the month, the neighborhoods, that a real author would supply. In an actual session the skill asks for those rather than inventing them.)*
 
 **Before (AI-sounding):**
 
@@ -193,7 +202,7 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 >
 > Would I go back? Absolutely. Lisbon isn't just a place to visit — it's a place to fall in love with, again and again. If you're dreaming of your next getaway, this is one destination that promises memories to last a lifetime. ✨
 
-**After (Humanized):**
+**After (humanized):**
 
 > I spent five days in Lisbon last October and still have mixed feelings about it. Beautiful, yes. Also harder on the knees than anyone warned me.
 >
@@ -207,16 +216,26 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 >
 > I would go back, but in spring and with better shoes. Lisbon does not bend over backward to make things easy for you. I think I liked that, even when my legs disagreed.
 
-## References
+## How the rewrite actually works
 
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing): the primary source
-- [WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup): the maintaining organization
+Three steps, every time. It reads the text and marks each pattern it finds. It writes a first draft aimed at plain verbs, varied sentence length, and the right register for where the text is headed. Then it stops and asks itself two questions: what here still reads as machine-written, and did I slip in any fact, name, or number that wasn't in the source. It fixes both and does a final dash sweep before handing anything over. If you tell it the result still sounds like a bot, it believes you and cuts harder rather than defending the draft.
 
-## Version history
+## Voice by platform
 
-- **1.1.0**: current release. Wikipedia-based pattern set plus Felix's hard rules: zero em and en dashes, platform-specific register, and a bias toward rougher drafts. No-fabrication rule and a final "obviously AI generated" audit plus second-pass rewrite.
-- **1.0.0**: initial release.
+The same text gets a different treatment depending on where it lands. A Reddit comment stays short and casual with bare links and no headers. An email is a greeting, the point, a short close, and none of the "I hope this finds you well." A README keeps its structure but drops the puffery. A GitHub issue reads like a telegram: what broke, why it matters, how to reproduce. LinkedIn gets first person and one idea per post, no motivational three-act build.
+
+## Credit
+
+The base pattern set comes from [Wikipedia's "Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), kept up by WikiProject AI Cleanup, which distilled it from thousands of real examples of machine text. Their one-line summary is the whole problem in a sentence:
+
+> "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
+
+The hard rules layered on top, the dash ban, the platform register, the bias toward rougher drafts, and the extra patterns in the last table, are mine.
+
+## Version
+
+3.0.0. Full Wikipedia-based pattern set, my own hard rules on top, the no-fabrication guard, and the two-pass audit-then-rewrite loop.
 
 ## License
 
-MIT
+MIT.
