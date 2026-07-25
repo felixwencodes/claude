@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "felixehumanizerpro",
+  "description": "Felix's personal writing editor. Removes signs of AI-generated writing, with zero-tolerance dash rules and platform-specific register on top of Wikipedia's \"Signs of AI writing\" guide.",
+  "version": "1.1.0",
+  "author": {
+    "name": "felixwen",
+    "url": "https://github.com/felixwen"
+  },
+  "homepage": "https://github.com/felixwen/humanizer",
+  "repository": "https://github.com/felixwen/humanizer",
+  "license": "MIT",
+  "keywords": ["writing", "editing", "ai-detection", "humanize", "prose", "style"]
+}
