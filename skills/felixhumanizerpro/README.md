@@ -1,4 +1,4 @@
-# felixhumanizerpro
+# FelixHumanizerPro
 
 My personal writing editor, packaged as an agent skill. It reads a piece of text, finds the habits that give away a language model, and rewrites them out so the result reads like a person actually typed it. The pattern list underneath is built on Wikipedia's "Signs of AI writing" guide, but I've bolted my own non-negotiables on top: no em or en dashes anywhere, tone that matches where the text is going, and a preference for a rougher draft over a shiny one. It's a single Markdown file, so it drops into any tool that understands skill instructions.
 
