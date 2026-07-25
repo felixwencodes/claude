@@ -1,6 +1,6 @@
 # felixhumanizerpro
 
-Felix's personal writing editor: a portable agent skill that strips the signs of AI-generated writing out of text so it reads like a person wrote it. It layers Felix's own hard rules on top of the Wikipedia "Signs of AI writing" guide, including a zero-tolerance ban on em/en dashes and platform-specific register. It is plain Markdown, so it runs in any harness that supports skill-style instructions.
+Felix's personal writing editor. It's a portable agent skill that strips the signs of AI-generated writing out of text so it reads like a person wrote it. On top of the Wikipedia "Signs of AI writing" guide it layers Felix's own hard rules, including a zero-tolerance ban on em and en dashes and platform-specific register. It's plain Markdown, so it runs in any harness that supports skill-style instructions.
 
 ## Installation
 
@@ -48,10 +48,10 @@ The skill is then invoked as `/felixhumanizerpro:felixhumanizerpro`.
 To use it inside Claude itself rather than a CLI, add it as a Skill:
 
 1. Package the skill as a `.skill` file (a zip of this folder that contains `SKILL.md`), or have `SKILL.md` ready on its own.
-2. In Claude, open **Settings → Capabilities → Skills** (Team/Enterprise workspaces may manage this under **Admin settings**), then choose **Add / Upload skill** and select the file.
+2. In Claude, open **Settings → Capabilities → Skills** (Team and Enterprise workspaces may manage this under **Admin settings**), then choose **Add / Upload skill** and select the file.
 3. Start a new chat. Ask Claude to humanize text, or trigger it by name, and Claude loads the skill automatically.
 
-Note: skill availability depends on your Claude plan and, on Team/Enterprise, on whether your workspace admin has enabled skills. The exact menu labels change over time, so if the path above does not match, look for "Skills" or "Capabilities" in your current Claude settings.
+Note: skill availability depends on your Claude plan and, on Team and Enterprise, on whether your workspace admin has enabled skills. The exact menu labels change over time, so if the path above does not match, look for "Skills" or "Capabilities" in your current Claude settings.
 
 ### Manual
 
@@ -72,11 +72,10 @@ cp SKILL.md /path/to/your/skills/felixhumanizerpro/
 
 ## Usage
 
-Invoke the skill however your agent harness exposes installed skills. Common forms include a slash command or a direct request:
+Invoke the skill however your agent harness exposes installed skills. Common forms are a slash command or a direct request:
 
 ```
 /felixhumanizerpro
-
 [paste your text here]
 ```
 
@@ -90,37 +89,35 @@ Point it at a file and the skill rewrites it in place:
 Humanize the prose in docs/launch-post.md
 ```
 
-### Voice Calibration
+### Voice calibration
 
-To match your personal writing style, provide a sample of your own writing:
+To match your personal writing style, give it a sample of your own writing:
 
 ```
 /felixhumanizerpro
-
 Here's a sample of my writing for voice matching:
 [paste 2-3 paragraphs of your own writing]
-
 Now humanize this text:
 [paste AI text to humanize]
 ```
 
-The skill analyzes your sentence rhythm, word choices, and quirks, then applies them to the rewrite instead of producing generic "clean" output.
+The skill reads your sentence rhythm, word choices, and quirks, then applies them to the rewrite instead of producing generic "clean" output.
 
 ## Overview
 
 Based on [Wikipedia's "Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) guide, maintained by WikiProject AI Cleanup. That guide comes from observations of thousands of instances of AI-generated text.
 
-On top of it, this skill adds Felix's own hard rules: zero em/en dashes with no exceptions, platform-specific register (a Reddit comment should not read like a press release), and a bias toward rougher, more human-sounding drafts over polished ones. It also runs a final "obviously AI generated" audit pass and a second rewrite, to catch lingering AI-isms in the first draft.
+On top of it, this skill adds Felix's own hard rules: zero em and en dashes with no exceptions, platform-specific register (a Reddit comment should not read like a press release), and a bias toward rougher, more human-sounding drafts over polished ones. It also runs a final "obviously AI generated" audit pass and a second rewrite to catch anything the first draft misses.
 
 Rewrites follow a no-fabrication rule: they never add facts, names, dates, or citations that aren't in the source text. Specificity has to come from the source or the author, not from the rewrite.
 
-### Key Insight from Wikipedia
+### Key insight from Wikipedia
 
 > "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
 
-## Patterns Detected (with Before/After Examples)
+## Patterns detected (with before/after examples)
 
-### Content Patterns
+### Content patterns
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
@@ -131,7 +128,7 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 | 5 | **Vague attributions** | "Experts believe it plays a crucial role" | Name a real source or cut the claim |
 | 6 | **Formulaic challenges** | "Despite challenges... continues to thrive" | Keep the sourced facts; cut the boosterism |
 
-### Language Patterns
+### Language patterns
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
@@ -143,7 +140,7 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 | 12 | **False ranges** | "from the Big Bang to dark matter" | List topics directly |
 | 13 | **Passive voice / subjectless fragments** | "No configuration file needed" | Name the actor when it helps clarity |
 
-### Style Patterns
+### Style patterns
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
@@ -162,7 +159,7 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 | 32 | **Aphorism formulas** | "Symmetry is the language of trust" | Replace the formula with the actual claim |
 | 33 | **Conversational rhetorical openers** | "Honestly? It depends..." | Remove the fake-candid setup |
 
-### Communication Patterns
+### Communication patterns
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
@@ -170,7 +167,7 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 | 21 | **Cutoff disclaimers** | "While details are limited in available sources..." | Find sources or remove |
 | 22 | **Sycophantic tone** | "Great question! You're absolutely right!" | Respond directly |
 
-### Filler and Hedging
+### Filler and hedging
 
 | # | Pattern | Before | After |
 |---|---------|--------|-------|
@@ -178,11 +175,12 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 | 24 | **Excessive hedging** | "could potentially possibly" | "may" |
 | 25 | **Generic conclusions** | "The future looks bright" | Specific plans or facts |
 
-## Full Example
+## Full example
 
 *(Illustration note: the rewrite below adds specifics, like the month and the neighborhoods, that stand in for details the author would supply. In a real session those come from the user; the skill asks rather than invents.)*
 
 **Before (AI-sounding):**
+
 > I recently spent five unforgettable days in Lisbon, and let me tell you — this city completely stole my heart. From the moment I arrived, I knew I was somewhere truly special.
 >
 > Nestled along the banks of the Tagus River, Lisbon stands as a vibrant testament to Portugal's enduring spirit, where rich history and modern energy intertwine at every turn. Yes, the famous hills are challenging — my legs certainly felt it! — but every climb rewards you with breathtaking, panoramic views that make it all worthwhile.
@@ -196,6 +194,7 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 > Would I go back? Absolutely. Lisbon isn't just a place to visit — it's a place to fall in love with, again and again. If you're dreaming of your next getaway, this is one destination that promises memories to last a lifetime. ✨
 
 **After (Humanized):**
+
 > I spent five days in Lisbon last October and still have mixed feelings about it. Beautiful, yes. Also harder on the knees than anyone warned me.
 >
 > The hills are the whole story and somehow never make the brochures. My hotel was up in Alfama, which photographs beautifully and translates, in practice, to climbing what felt like a six-story staircase every time I wanted coffee. By the second day my calves had opinions. I started planning each walk around which way was downhill, which is a strange way to see a city but probably an honest one.
@@ -210,13 +209,13 @@ Rewrites follow a no-fabrication rule: they never add facts, names, dates, or ci
 
 ## References
 
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) - Primary source
-- [WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) - Maintaining organization
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing): the primary source
+- [WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup): the maintaining organization
 
-## Version History
+## Version history
 
-- **1.1.0** - Current release. Wikipedia-based pattern set plus Felix's hard rules: zero em/en dashes, platform-specific register, and a bias toward rougher drafts. No-fabrication rule and a final "obviously AI generated" audit + second-pass rewrite.
-- **1.0.0** - Initial release.
+- **1.1.0**: current release. Wikipedia-based pattern set plus Felix's hard rules: zero em and en dashes, platform-specific register, and a bias toward rougher drafts. No-fabrication rule and a final "obviously AI generated" audit plus second-pass rewrite.
+- **1.0.0**: initial release.
 
 ## License
 
