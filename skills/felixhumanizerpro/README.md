@@ -16,6 +16,16 @@ Most "humanizer" tools stop at deleting a few buzzwords and call it done. That i
 
 ## Install
 
+### The easy way: ask Claude or Codex
+
+If you're in Claude Code, Codex, or any coding agent that can read and write your files, skip the commands below. Paste the skill's link into the chat and ask it to install:
+
+```
+Install this skill for me: https://github.com/felixwencodes/claude/tree/main/skills/felixhumanizerpro
+```
+
+The agent clones the folder and drops it wherever that tool keeps skills. For Claude Code that's `~/.claude/skills/felixhumanizerpro/`. Codex and other harnesses use their own location, so if the agent asks, point it at your tool's skills directory. After that you can call the skill in a new session. This only works where the agent actually has file access. In a plain claude.ai or mobile chat, which can't reach your filesystem, use the upload steps under "Inside the Claude apps" further down instead.
+
 ### Through the skills CLI
 
 Global install, available in every project:
