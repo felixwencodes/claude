@@ -1,6 +1,6 @@
 ---
-name: felixhumanizerpro
-description: |
+Name: felixhumanizerpro
+Description: |
   Felix's personal writing editor. Removes signs of AI-generated writing from
   anything felix will post, send, or publish as his own: Reddit posts and
   comments, tweets, LinkedIn posts, emails, DMs, Slack/Discord messages, GitHub
@@ -14,8 +14,8 @@ description: |
   inflated symbolism, promotional language, superficial -ing analyses, vague
   attributions, rule of three, AI vocabulary words, passive voice, negative
   parallelisms, filler phrases, and chatbot artifacts.
-license: MIT
-metadata:
+License: MIT
+Metadata:
   version: "3.0.0"
 ---
 
